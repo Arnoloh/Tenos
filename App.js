@@ -5,11 +5,9 @@ function App() {
 
   return (
     <SafeAreaView>
-      <div>
-        <View style={styles.styleButton}>
-          <NeedText></NeedText>
-        </View>
-      </div>
+      <View style={styles.styleButton}>
+        <NeedText></NeedText>
+      </View>
     </SafeAreaView>
   )
 
@@ -37,7 +35,17 @@ class NeedText extends Component {
         <Button
           color={"#047AFF"}
           title="Send message"
-          onPress={() => console.log(this.state.message)}
+          onPress={() => {
+            try {
+              fetch("https://192.168.56.1:4000/api/test", {
+                method: 'POST',
+              
+              })
+
+            } catch (error) {
+              console.error(`Error Send: ${error}`);
+            }
+          }}
         />
       </SafeAreaView >
     )
